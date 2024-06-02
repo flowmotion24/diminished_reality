@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hallo Maus</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fstatic.vecteezy.com%2Fsystem%2Fresources%2Fpreviews%2F000%2F694%2F446%2Foriginal%2Fpink-bokeh-lights-background-vector.jpg&f=1&nofb=1&ipt=4da9cf347eb65d20c5083448494b232f9f2fa3b668a5241d61dd47bbb8b81744&ipo=images');
+            background-size: cover;
+            background-position: center;
+            font-family: Arial, sans-serif;
+        }
+        .content {
+            text-align: center;
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .title {
+            font-style: italic;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+        .window {
+            position: relative;
+            width: 80%;
+            max-width: 600px;
+            background: #E3E3E3;
+            border: 2px solid #A5A5A5;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            z-index: 1;
+        }
+        .window-header {
+            background: #0A579A;
+            color: white;
+            padding: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .window-buttons {
+            display: flex;
+            gap: 5px;
+        }
+        .window-button {
+            width: 15px;
+            height: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+        .window-button.minimize {
+            background-color: #0A579A;
+        }
+        .window-button.maximize {
+            background-color: #0A579A;
+        }
+        .window-button.close {
+            background-color: #FF5C5C;
+        }
+        .window-button.minimize::before {
+            content: '_';
+            color: white;
+            font-size: 12px;
+        }
+        .window-button.maximize::before {
+            content: '□';
+            color: white;
+            font-size: 12px;
+        }
+        .window-button.close::before {
+            content: '×';
+            color: white;
+            font-size: 12px;
+        }
+        .model-viewer {
+            width: 100%;
+            height: 400px;
+            background: #FFFFFF;
+        }
+        .popup {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: #E3E3E3;
+            border: 2px solid #A5A5A5;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 2;
+        }
+        .popup img {
+            width: 100%;
+            height: 100%;
+        }
+        .clippy {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            z-index: 3;
+        }
+        .clippy .speech-bubble {
+            position: absolute;
+            bottom: 120%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            border: 2px solid #A5A5A5;
+            padding: 5px;
+            text-align: center;
+        }
+        .clippy .speech-bubble button {
+            background: #FF69B4;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="title">Hallo Maus, schön dass du hier bist. Ruh dich ein bißchen aus. Wenn du soweit bist, kannst du auf den Button drücken, um meine Skulptur zu sehen.</div>
+        <div class="window">
+            <div class="window-header">
+                <span>Model Viewer</span>
+                <div class="window-buttons">
+                    <div class="window-button minimize"></div>
+                    <div class="window-button maximize"></div>
+                    <div class="window-button close"></div>
+                </div>
+            </div>
+            <div class="model-viewer">
+                <model-viewer 
+                    id="model-viewer"
+                    src="heart balloon.glb"
+                    ios-src="heart balloon.usdz"
+                    alt="Kunsthalle AR Show"
+                    ar
+                    ar-modes="webxr scene-viewer quick-look" 
+                    environment-image="neutral" 
+                    auto-rotate
+                    camera-controls
+                    animation-name="CubeAction" 
+                    animation-loop>
+                </model-viewer>
+            </div>
+        </div>
+    </div>
+
+    <div class="popup" style="top: 10%; left: 5%;">
+        <div class="window-header">
+            <span>Bild 1</span>
+            <div class="window-buttons">
+                <div class="window-button minimize"></div>
+                <div class="window-button maximize"></div>
+                <div class="window-button close"></div>
+            </div>
+        </div>
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F24%2F56%2Ff0%2F2456f0cad6bda499a32c6ae1af0c600b.jpg&f=1&nofb=1&ipt=c9e7c69b70969b796de666768b10c056b09b3c24d39b9c88ad6d87bb243668a5&ipo=images" alt="Bild 1">
+    </div>
+
+    <div class="popup" style="top: 45%; left: 20%;">
+        <div class="window-header">
+            <span>Bild 2</span>
+            <div class="window-buttons">
+                <div class="window-button minimize"></div>
+                <div class="window-button maximize"></div>
+                <div class="window-button close"></div>
+            </div>
+        </div>
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2Fa7%2F13%2F00%2Fa7130008d42427af33480515af923fa7.jpg&f=1&nofb=1&ipt=3a1a21c6c0cfa78b2d5436b0b7f322708339551e71b429b0fd2abc5fcc65d36e&ipo=images" alt="Bild 2">
+    </div>
+
+    <div class="popup" style="top: 80%; left: 10%;">
+        <div class="window-header">
+            <span>Bild 3</span>
+            <div class="window-buttons">
+                <div class="window-button minimize"></div>
+                <div class="window-button maximize"></div>
+                <div class="window-button close"></div>
+            </div>
+        </div>
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F7b%2Fa7%2F05%2F7ba705ac43631afb74a5e0d5dd518108.jpg&f=1&nofb=1&ipt=76ba57c58e83aa02a5e249c68570fdd21c65db88ec49f4419629fe48079743ed&ipo=images" alt="Bild 3">
+    </div>
+
+    <div class="clippy">
+        <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2F736x%2F59%2Ff7%2F56%2F59f75681c5d10ebd570b3bf3f2ac9aa3--animated-gif.jpg&f=1&nofb=1&ipt=c5d6a97c7ff72ad29caa869c653b944a76ad159f168d1d78fefd28c25b07fb13&ipo=images" alt="Clippy">
+        <div class="speech-bubble">
+            <button>Modell ansehen</button>
+        </div>
+    </div>
+</body>
+</html>
