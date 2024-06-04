@@ -1,49 +1,347 @@
-
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AR Ausstellung</title>
-    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-     <style>
-        model-viewer {
-            width: 100%; /* 100% of the parent's width */
-            height: 80vh; /* 80% of the viewport height */
-            display: block;
-            margin: auto;
-        }
-    </style>
-  </head>
-  <body>
-<H2>Willkommen in meiner Misere. ChatGPT ist down, deswegen müsst ihr euch damit zufrieden geben.
-      
-  made by flo büchel!</H2>
-  <model-viewer 
-                id="model-viewer"
-                src="heart balloon_animated.glb"
-                ios-src="heart balloon.usdz"
-                alt="heart balloon"
-                ar
-                ar-modes="webxr scene-viewer quick-look" 
-                environment-image="neutral" 
-                auto-rotate
-                camera-controls
-                animation-name="CubeAction" 
-                animation-loop>  
-  </model-viewer>
- <script>
-        async function checkARCoreCompatibility() {
-            const modelViewer = document.getElementById('model-viewer');
-            const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
-            if (!isARCoreSupported) {
-                modelViewer.removeAttribute('ar');
-                modelViewer.removeAttribute('ar-modes');
-                alert('Your device is not compatible with AR features. You can still view the 3D model.');
-            }
-        }
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flo Webseite diminished_reality</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 
-        document.addEventListener('DOMContentLoaded', checkARCoreCompatibility);
-    </script>
-   </body>
+    body {
+      background-color: #ffd1dc;
+      background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding-top: 50px;
+      overflow: auto;
+    }
+
+    .window {
+      background-color: #d7d2d2;
+      border: 2px solid #000;
+      width: 90%;
+      max-width: 800px;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      position: relative;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .window-header {
+      background-color: #000080;
+      color: white;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .window-header .buttons {
+      display: flex;
+    }
+
+    .window-header button {
+      background-color: transparent;
+      border: none;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      margin-left: 5px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .window-header button.minimize {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Windows_minimize_icon.png/600px-Windows_minimize_icon.png');
+      background-size: 14px 2px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .window-header button.maximize {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/63/Windows_maximize_icon.png');
+    }
+
+    .window-header button.close {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_close_icon.png');
+    }
+
+    .content {
+      font-family: 'Great Vibes', cursive;
+      color: white;
+    }
+
+    h1 {
+      font-size: 100pt;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+      position: relative;
+      animation: glitter 1.5s infinite;
+      background: linear-gradient(90deg, #f826f8 0%, #ffd700 50%, #ff17a6 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: rgb(255, 60, 138);
+      -webkit-text-stroke: 0.5px white;
+    }
+
+    p {
+      font-size: 20pt;
+      margin: 40px 0;
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
+      position: relative;
+      animation: glitter 1.5s infinite;
+      background: linear-gradient(90deg, #ffffff 0%, #ffd700 50%, #ffffff 100%);
+      background-size: 200% 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    @keyframes glitter {
+      0% {
+        background-position: 0% 0%;
+      }
+      100% {
+        background-position: 200% 200%;
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; }
+      50% { opacity: 1; transform: scale(1.5); }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      background: white;
+      border-radius: 50%;
+      animation: sparkle 2s infinite;
+      filter: blur(2px);
+    }
+
+    #model-viewer {
+      width: 100%;
+      height: 300px;
+      outline: 2px solid white;
+      filter: blur(0.5px) brightness(1.1);
+    }
+
+    .button-container {
+      margin-top: 20px;
+    }
+
+    .ar-button {
+      background-color: #d6336c;
+      color: white;
+      font-size: 16pt;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .ar-button:hover {
+      background-color: #c2185b;
+    }
+
+    .popup-window {
+      position: absolute;
+      width: 150px;
+      background-color: #c0c0c0;
+      border: 2px solid #000;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .popup-window-header {
+      background-color: #000080;
+      color: white;
+      padding: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .popup-window-header .buttons {
+      display: flex;
+    }
+
+    .popup-window-header button {
+      background-color: transparent;
+      border: none;
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      margin-left: 5px;
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .popup-window-header button.minimize {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Windows_minimize_icon.png/600px-Windows_minimize_icon.png');
+      background-size: 14px 2px;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .popup-window-header button.maximize {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/63/Windows_maximize_icon.png');
+    }
+
+    .popup-window-header button.close {
+      background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_close_icon.png');
+    }
+
+    .popup-content img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 30pt;
+      }
+
+      p {
+        font-size: 16pt;
+      }
+
+      #model-viewer {
+        height: 200px;
+      }
+
+      .popup-window {
+        width: 130px;
+      }
+
+      .ar-button {
+        font-size: 12pt;
+        padding: 8px 16px;
+      }
+    }
+
+    .sparkle-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <div class="sparkle-container"></div>
+
+  <div class="window">
+    <div class="window-header">
+      <span>willkommen <3</span>
+      <div class="buttons">
+        <button class="minimize" onclick="this.closest('.window').style.display='none'"></button>
+        <button class="maximize" onclick="this.closest('.window').style.width='100%'"></button>
+        <button class="close" onclick="window.close()"></button>
+      </div>
+    </div>
+    <div class="content">
+      <h1>heyy maus</h1>
+      <p>schön, dass du da bist <3. schau dir gerne mein modell an oder scroll bissi rum</p>
+      <p>kein stress :)</p>
+      <model-viewer id="model-viewer" src="heart balloon_animation.glb" ios-src="heart balloon.usdz" alt="heart balloon_animation" ar auto-rotate camera-controls ar-modes="webxr scene-viewer quick-look" environment-image="neutral"></model-viewer>
+    </div>
+  </div>
+
+  <div class="button-container">
+    <button class="ar-button" onclick="document.getElementById('model-viewer').activateAR()">Modell ansehen</button>
+  </div>
+
+  <div class="popup-window" style="top: 20px; left: 20px;">
+    <div class="popup-window-header">
+      <span>my drip</span>
+      <div class="buttons">
+        <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
+        <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
+        <button class="close" onclick="this.closest('.popup-window').remove()"></button>
+      </div>
+    </div>
+    <div class="popup-content">
+      <img src="https://i.pinimg.com/736x/dc/99/66/dc9966bd6c82c3ceba0b90f064b5b8f5.jpg" alt="Popup 1 Bild">
+    </div>
+  </div>
+
+  <div class="popup-window" style="top: 20px; right: 20px;">
+    <div class="popup-window-header">
+      <span>my tool of choice</span>
+      <div class="buttons">
+        <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
+        <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
+        <button class="close" onclick="this.closest('.popup-window').remove()"></button>
+      </div>
+    </div>
+    <div class="popup-content">
+      <img src="https://ae01.alicdn.com/kf/Sf64c0930a05c4196b4120724397a0054u.jpg" alt="Popup 2 Bild">
+    </div>
+  </div>
+
+  <div class="popup-window" style="bottom: 20px; left: 20px;">
+    <div class="popup-window-header">
+      <span>my work environment</span>
+      <div class="buttons">
+        <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
+        <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
+        <button class="close" onclick="this.closest('.popup-window').remove()"></button>
+      </div>
+    </div>
+    <div class="popup-content">
+      <img src="https://i.pinimg.com/originals/71/f4/28/71f4287871bcc4565433b9800dffb91d.jpg" alt="Popup 3 Bild">
+    </div>
+  </div>
+
+  <div class="popup-window" style="bottom: 20px; right: 20px;">
+    <div class="popup-window-header">
+      <span>my beauty oasis</span>
+      <div class="buttons">
+        <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
+        <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
+        <button class="close" onclick="this.closest('.popup-window').remove()"></button>
+      </div>
+    </div>
+    <div class="popup-content">
+      <img src="https://i.pinimg.com/originals/39/a5/b4/39a5b4147b6845c8ffd840c5c5cd2b53.jpg" alt="Popup 4 Bild">
+    </div>
+  </div>
+
+  <script>
+    async function checkARCoreCompatibility() {
+      const modelViewer = document.getElementById('model-viewer');
+      const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
+      if (!isARCoreSupported) {
+        modelViewer.removeAttribute('ar');
+        modelViewer.removeAttribute('ar-modes');
+        alert('Your device is not compatible with AR features. You can still view the 3D model.');
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', checkARCoreCompatibility);
+
+    function createSparkles() {
+      const sparkleContainer = document.querySelector('.sparkle-container');
+      for (let i = 0; i < 100; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.top = `${Math.random() * 100}%`;
+        sparkle.style.left = `${Math.random() * 100}%`;
+        sparkle.style.animationDuration = `${Math.random() * 2 + 1}s`;
+        sparkleContainer.appendChild(sparkle);
+      }
+    }
+
+    createSparkles();
+  </script>
+</body>
 </html>
