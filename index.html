@@ -7,6 +7,7 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Vidaloka&display=swap');
 
     body {
       background-color: #ffd1dc;
@@ -77,6 +78,7 @@
     }
 
     h1 {
+      font-family: 'Great Vibes', cursive;
       font-size: 100pt;
       margin-bottom: 20px;
       text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
@@ -90,13 +92,19 @@
       -webkit-text-stroke: 0.5px white;
     }
 
+    .content {
+      font-family: 'Vidaloka', serif;
+      color: black;
+    }
+
     p {
+      font-family: 'Vidaloka', serif;
       font-size: 20pt;
       margin: 40px 0;
       text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
       position: relative;
       animation: glitter 1.5s infinite;
-      background: linear-gradient(90deg, #ffffff 0%, #ffd700 50%, #ffffff 100%);
+      background: linear-gradient(90deg, #ffffff 0%, #1e1d1a 50%, #545252 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -158,6 +166,7 @@
       border: 2px solid #000;
       padding: 10px;
       text-align: center;
+      z-index: 20;
     }
 
     .popup-window-header {
@@ -167,6 +176,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      z-index: 21;
     }
 
     .popup-window-header .buttons {
@@ -250,14 +260,9 @@
     </div>
     <div class="content">
       <h1>heyy maus</h1>
-      <p>schön, dass du da bist <3. schau dir gerne mein modell an oder scroll bissi rum</p>
-      <p>kein stress :)</p>
-      <model-viewer id="model-viewer" 
-        src="heart balloon_animation.glb" 
-        ios-src="heart balloon.usdz" 
-        alt="heart balloon_animation" 
-        ar auto-rotate camera-controls ar-modes="webxr scene-viewer quick-look" 
-        environment-image="neutral"></model-viewer>
+      <p>schön, dass du da bist <3. schau dir gerne mein modell an oder scroll bissi rum, kein stress</p>
+      <p> made by flo büchel</p>
+      <model-viewer id="model-viewer" src="heart balloon_animation.glb" ios-src="heart balloon_animation.usdz" alt="heart balloon_animation" ar auto-rotate camera-controls ar-modes="webxr scene-viewer quick-look" environment-image="neutral"></model-viewer>
     </div>
   </div>
 
@@ -270,7 +275,7 @@
       <span>my drip</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
-        <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
+        <button class="maximize" onclick="toggleMaximize(this)"></button>
         <button class="close" onclick="this.closest('.popup-window').remove()"></button>
       </div>
     </div>
@@ -284,7 +289,7 @@
       <span>my tool of choice</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
-        <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
+        <button class="maximize" onclick="toggleMaximize(this)"></button>
         <button class="close" onclick="this.closest('.popup-window').remove()"></button>
       </div>
     </div>
@@ -298,7 +303,7 @@
       <span>my work environment</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
-        <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
+        <button class="maximize" onclick="toggleMaximize(this)"></button>
         <button class="close" onclick="this.closest('.popup-window').remove()"></button>
       </div>
     </div>
@@ -312,7 +317,7 @@
       <span>my beauty oasis</span>
       <div class="buttons">
         <button class="minimize" onclick="this.closest('.popup-window').style.display='none'"></button>
-        <button class="maximize" onclick="this.closest('.popup-window').style.width='100%'"></button>
+        <button class="maximize" onclick="toggleMaximize(this)"></button>
         <button class="close" onclick="this.closest('.popup-window').remove()"></button>
       </div>
     </div>
@@ -324,8 +329,9 @@
   <script>
     async function checkARCoreCompatibility() {
       const modelViewer = document.getElementById('model-viewer');
-      const isARCoreSupported = await navigator.xr.isSessionSupported('immersive-ar');
-      if (!isARCoreSupported) {
+      if (navigator.xr && await navigator.xr.isSessionSupported('immersive-ar')) {
+        console.log('ARCore is supported');
+      } else {
         modelViewer.removeAttribute('ar');
         modelViewer.removeAttribute('ar-modes');
         alert('Your device is not compatible with AR features. You can still view the 3D model.');
@@ -336,7 +342,7 @@
 
     function createSparkles() {
       const sparkleContainer = document.querySelector('.sparkle-container');
-      for (let i = 0; i < 100; i++) {
+      for (let i = 0; i < 50; i++) {
         const sparkle = document.createElement('div');
         sparkle.classList.add('sparkle');
         sparkle.style.top = `${Math.random() * 100}%`;
@@ -347,6 +353,17 @@
     }
 
     createSparkles();
+
+    function toggleMaximize(button) {
+      const popup = button.closest('.popup-window');
+      if (popup.style.width === '100%') {
+        popup.style.width = '';
+        popup.style.height = '';
+      } else {
+        popup.style.width = '100%';
+        popup.style.height = '100%';
+      }
+    }
   </script>
 </body>
 </html>
