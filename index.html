@@ -7,7 +7,7 @@
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
-
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
     body {
       background-color: #ffd1dc;
       background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
@@ -56,27 +56,25 @@
       background-repeat: no-repeat;
     }
 
-    .window-header button.minimize {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Windows_minimize_icon.png/600px-Windows_minimize_icon.png');
-      background-size: 14px 2px;
-      background-position: center;
-      background-repeat: no-repeat;
+    .popup-window-header button.minimize {
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fwindows-minimize-icon%2Fwindows-minimize-icon-11.jpg&f=1&nofb=1&ipt=f6f723d9e327af454f79863de499cdbed16031e89439b9805880c56373270c89&ipo=images');
     }
 
-    .window-header button.maximize {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/63/Windows_maximize_icon.png');
+    .popup-window-header button.maximize {
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fdownload%2Fblue%2Fmaximize-window-512.png&f=1&nofb=1&ipt=961e3e94f445139c4561b92c6536b71efffd93b9b35aedaff7c437fb131bccbf&ipo=images');
     }
 
-    .window-header button.close {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_close_icon.png');
+    .popup-window-header button.close {
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.F4J760Rqx2G6xTysZuKS2gAAAA%26pid%3DApi&f=1&ipt=850bd283d2424392cb633290af9dd1378af201c756f6c129f51346c75262def7&ipo=images');
     }
+
 
     .content {
-      font-family: 'Great Vibes', cursive;
       color: white;
     }
 
     h1 {
+      font-family: 'Great Vibes', cursive;
       font-size: 100pt;
       margin-bottom: 20px;
       text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
@@ -91,12 +89,13 @@
     }
 
     p {
-      font-size: 20pt;
+      font-family: 'Archivo', italic;
+      font-size: 16pt;
       margin: 40px 0;
       text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.8);
       position: relative;
       animation: glitter 1.5s infinite;
-      background: linear-gradient(90deg, #ffffff 0%, #ffd700 50%, #ffffff 100%);
+      background: linear-gradient(90deg, #212121 0%, #b4b4b4 50%, #353333 100%);
       background-size: 200% 200%;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -184,19 +183,18 @@
       background-repeat: no-repeat;
     }
 
-    .popup-window-header button.minimize {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/3b/Windows_minimize_icon.png/600px-Windows_minimize_icon.png');
+      .popup-window-header button.minimize {
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fwindows-minimize-icon%2Fwindows-minimize-icon-11.jpg&f=1&nofb=1&ipt=f6f723d9e327af454f79863de499cdbed16031e89439b9805880c56373270c89&ipo=images');
       background-size: 14px 2px;
       background-position: center;
-      background-repeat: no-repeat;
-    }
+      background-repeat: no-repeat;}
 
     .popup-window-header button.maximize {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/6/63/Windows_maximize_icon.png');
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fdownload%2Fblue%2Fmaximize-window-512.png&f=1&nofb=1&ipt=961e3e94f445139c4561b92c6536b71efffd93b9b35aedaff7c437fb131bccbf&ipo=images');
     }
 
     .popup-window-header button.close {
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/b/b5/Windows_close_icon.png');
+      background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.F4J760Rqx2G6xTysZuKS2gAAAA%26pid%3DApi&f=1&ipt=850bd283d2424392cb633290af9dd1378af201c756f6c129f51346c75262def7&ipo=images');
     }
 
     .popup-content img {
@@ -237,8 +235,8 @@
   </style>
 </head>
 <body>
-  <div class="sparkle-container"></div>
 
+  <div class="sparkle-container"></div>
   <div class="window">
     <div class="window-header">
       <span>willkommen <3</span>
@@ -249,16 +247,21 @@
       </div>
     </div>
     <div class="content">
-      <h1>heyy maus</h1>
-      <p>schön, dass du da bist <3. schau dir gerne mein modell an oder scroll bissi rum</p>
-      <p>kein stress :)</p>
-      <model-viewer id="model-viewer" src="heart balloon_animation.glb" ios-src="heart balloon.usdz" alt="heart balloon_animation" ar auto-rotate camera-controls ar-modes="webxr scene-viewer quick-look" environment-image="neutral"></model-viewer>
+      <h1>willkommen, maus !</h1>
+      <p>schön, dass du da bist <3. hier ist mein kleiner safe space. schließe deine augen, hol einmal tief luft, 
+        halte kurz inne und erde dich im moment. atme wieder tief aus.</p>
+      <p>wenn du soweit bist, kannst du gerne auf den knopf unten drücken, um mein Modell anzuschauen. </p>
+        <div class="button-container">
+    <button class="ar-button" onclick="document.getElementById('model-viewer').activateAR()">Modell ansehen</button>
+  </div>
+<p></p>
+<a href="text.html">Text about the work</a>
+<p></p>
+  <model-viewer id="model-viewer" src="heart balloon_animation.glb" ios-src="heart balloon.usdz" alt="heart balloon_animation" ar auto-rotate camera-controls ar-modes="webxr scene-viewer quick-look" environment-image="neutral"></model-viewer>
     </div>
   </div>
 
-  <div class="button-container">
-    <button class="ar-button" onclick="document.getElementById('model-viewer').activateAR()">Modell ansehen</button>
-  </div>
+
 
   <div class="popup-window" style="top: 20px; left: 20px;">
     <div class="popup-window-header">
