@@ -56,12 +56,15 @@
       background-repeat: no-repeat;
     }
 
-  .webring {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
-  }
+.webring {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+  padding-top: 0;
+}
+
 
     .popup-window-header button.minimize {
       background-image: url('https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ficon-library.com%2Fimages%2Fwindows-minimize-icon%2Fwindows-minimize-icon-11.jpg&f=1&nofb=1&ipt=f6f723d9e327af454f79863de499cdbed16031e89439b9805880c56373270c89&ipo=images');
@@ -237,7 +240,7 @@
   </style>
 </head>
 <body>
-  <div class="webring" style="padding-top: 230px;">
+  <div class="webring">
     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="224" height="107" viewBox="0 0 215 102.479" style="display:block">
   <defs>
     <style>@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&amp;display=swap');</style>
